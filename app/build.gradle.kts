@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.myapplication"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -51,6 +51,9 @@ android {
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/com.kizitonwose.calendar/view
+    implementation("com.kizitonwose.calendar:view:2.4.0")
+
     //MediaPipe Tasks Vision
     implementation ("com.google.mediapipe:tasks-vision:0.10.15")
 
