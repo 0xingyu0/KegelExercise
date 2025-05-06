@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.fragment
+package com.example.myapplication.poselandmarker.fragment
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.camera.core.Preview
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -19,10 +20,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
-import com.example.myapplication.poselandmarker.PoseLandmarkerHelper
-import com.example.myapplication.poselandmarker.MainViewModel
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentCameraBinding
+import com.example.myapplication.poselandmarker.MainViewModel
+import com.example.myapplication.poselandmarker.PoseLandmarkerHelper
 import com.google.mediapipe.tasks.vision.core.RunningMode
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -56,7 +57,7 @@ class CameraFragment : Fragment(), PoseLandmarkerHelper.LandmarkerListener {
         // user could have removed them while the app was in paused state.
         if (!PermissionsFragment.hasPermissions(requireContext())) {
             Navigation.findNavController(
-                requireActivity(), R.id.fragment_container
+                requireActivity(), R.id.nav_host_fragment
             ).navigate(R.id.action_camera_to_permissions)
         }
 
@@ -110,16 +111,39 @@ class CameraFragment : Fragment(), PoseLandmarkerHelper.LandmarkerListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initialize our background executor
-        backgroundExecutor = Executors.newSingleThreadExecutor()
+        // 攔截返回鍵
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    requireActivity().finish()
+                }
+            }
+        )
 
-        // Wait for the views to be properly laid out
-        fragmentCameraBinding.viewFinder.post {
-            // Set up the camera and its use cases
+        // 結束按鈕
+        fragmentCameraBinding.btnExit.setOnClickListener {
+            requireActivity().finish()
+        }
+
+        // 切換鏡頭按鈕
+        fragmentCameraBinding.btnSwitchCamera.setOnClickListener {
+            cameraFacing = if (cameraFacing == CameraSelector.LENS_FACING_BACK) {
+                CameraSelector.LENS_FACING_FRONT
+            } else {
+                CameraSelector.LENS_FACING_BACK
+            }
             setUpCamera()
         }
 
-        // Create the PoseLandmarkerHelper that will handle the inference
+        // 初始化背景執行器
+        backgroundExecutor = Executors.newSingleThreadExecutor()
+
+        // 初始化相機
+        fragmentCameraBinding.viewFinder.post {
+            setUpCamera()
+        }
+
+        // 初始化姿勢模型
         backgroundExecutor.execute {
             poseLandmarkerHelper = PoseLandmarkerHelper(
                 context = requireContext(),
@@ -130,15 +154,6 @@ class CameraFragment : Fragment(), PoseLandmarkerHelper.LandmarkerListener {
                 currentDelegate = viewModel.currentDelegate,
                 poseLandmarkerHelperListener = this
             )
-        }
-        // 切換鏡頭按鈕
-        fragmentCameraBinding.btnSwitchCamera.setOnClickListener {
-            cameraFacing = if (cameraFacing == CameraSelector.LENS_FACING_BACK) {
-                CameraSelector.LENS_FACING_FRONT
-            } else {
-                CameraSelector.LENS_FACING_BACK
-            }
-            setUpCamera() // 重新啟動相機
         }
     }
 

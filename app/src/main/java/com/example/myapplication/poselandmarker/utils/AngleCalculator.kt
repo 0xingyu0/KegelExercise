@@ -1,4 +1,4 @@
-package com.example.myapplication.poselandmarker
+package com.example.myapplication.poselandmarker.utils
 
 import kotlin.math.acos
 import kotlin.math.sqrt

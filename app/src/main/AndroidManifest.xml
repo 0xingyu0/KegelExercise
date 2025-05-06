@@ -33,6 +33,8 @@
                 android:value="true" />
         </activity>
 
+        <activity android:name=".ui.activity.PoseLandmarkerActivity" />
+
         <!-- 新增：CheckHistoryActivity -->
         <activity android:name=".userdata.CheckHistoryActivity" />
 
