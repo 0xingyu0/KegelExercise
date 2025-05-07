@@ -12,7 +12,7 @@ android {
         minSdk = 26
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.5"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -43,11 +43,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
+
 }
 
 dependencies {
@@ -55,7 +51,7 @@ dependencies {
     implementation("com.kizitonwose.calendar:view:2.4.0")
 
     //MediaPipe Tasks Vision
-    implementation ("com.google.mediapipe:tasks-vision:0.10.15")
+    implementation ("com.google.mediapipe:tasks-vision:0.10.20")
 
     // Gson (for JSON read/write)
     implementation("com.google.code.gson:gson:2.10.1")
