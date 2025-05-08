@@ -1,0 +1,11 @@
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#33A68B65"> <!-- 按壓時顯示的 ripple 顏色，這裡是半透明咖啡 -->
+
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#E5CBA5" />
+            <corners android:radius="16dp" />
+            <stroke android:width="2dp" android:color="#A68B65" />
+        </shape>
+    </item>
+</ripple>

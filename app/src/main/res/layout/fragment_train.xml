@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EFEDE1">
+
+    <!-- 柴犬圖片 -->
+    <ImageView
+        android:id="@+id/dogImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="48dp"
+        android:src="@drawable/dog_stretch"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/titleText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/titleText"
+        app:layout_constraintHorizontal_chainStyle="packed" />
+
+    <!-- 標題文字 -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_title"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:fontFamily="@font/custom_font"
+        android:layout_marginStart="2dp"
+        app:layout_constraintTop_toTopOf="@id/dogImage"
+        app:layout_constraintBottom_toBottomOf="@id/dogImage"
+        app:layout_constraintStart_toEndOf="@id/dogImage"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 有壓力感測器按鈕 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonHaveSensor"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/rounded_button_ripple"
+        android:backgroundTint="@null"
+        android:text="@string/train_btn1"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/titleText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- 沒有壓力感測器按鈕 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonNoSensor"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_button_ripple"
+        android:backgroundTint="@null"
+        android:text="@string/train_btn2"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/buttonHaveSensor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 購買連結 -->
+    <TextView
+        android:id="@+id/purchaseLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/train_text1"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@+id/buttonNoSensor"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="40dp" />
+
+    <TextView
+        android:id="@+id/purchaseUrl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/train_text2"
+        android:textColor="@color/link_blue"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:autoLink="web"
+        app:layout_constraintTop_toTopOf="@+id/purchaseLink"
+        app:layout_constraintStart_toEndOf="@+id/purchaseLink"
+        android:layout_marginStart="4dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
