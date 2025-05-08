@@ -6,12 +6,12 @@
     <string name="ic_plus">PLUS</string>
     <string name="ic_account">帳戶</string>
     <string name="main_title">這局換我凱格爾</string>
-    <string name="main_btn1">凱格爾是甚麼？</string>
-    <string name="main_btn2">做凱格爾有甚麼好處？</string>
-    <string name="main_btn3">凱格爾該怎麼做？</string>
+    <string name="main_btn1">凱格爾是甚麼?</string>
+    <string name="main_btn2">做凱格爾有甚麼好處?</string>
+    <string name="main_btn3">凱格爾該怎麼做?</string>
     <string name="train_btn1">我有壓力感測器</string>
     <string name="train_btn2">我沒有壓力感測器</string>
-    <string name="train_text1">想要購買壓力感測器？</string>
+    <string name="train_text1">想要購買壓力感測器?</string>
     <string name="train_text2">購買連結</string>
 
 </resources>
