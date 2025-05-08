@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         // 底部導航點擊切換 Fragment
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.navigation_record -> {
+                R.id.navigation_home -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragmentContainer, HomeFragment())
                         .commit()
