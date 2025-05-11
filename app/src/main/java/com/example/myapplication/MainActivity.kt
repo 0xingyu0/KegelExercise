@@ -1,11 +1,9 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.ui.fragment.HomeFragment
 import com.example.myapplication.ui.fragment.TrainFragment
@@ -19,9 +17,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         // 預設顯示首頁 Fragment
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, HomeFragment())
-            .commit()
+        Handler(Looper.getMainLooper()).post {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, HomeFragment())
+                .commit()
+        }
+
 
         // 底部導航點擊切換 Fragment
         binding.bottomNavigation.setOnItemSelectedListener { item ->
