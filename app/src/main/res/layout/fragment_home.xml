@@ -5,33 +5,50 @@
     android:layout_height="match_parent"
     android:background="#EFEDE1">
 
-    <!-- 柴犬圖片 -->
-    <ImageView
-        android:id="@+id/dogImage"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="48dp"
-        android:src="@drawable/dog_stretch"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/titleText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/titleText"
-        app:layout_constraintHorizontal_chainStyle="packed" />
-
-    <!-- 標題 -->
-    <TextView
-        android:id="@+id/titleText"
+    <!-- 包裝圖片 + 標題的 LinearLayout -->
+    <LinearLayout
+        android:id="@+id/titleContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_title"
-        android:textSize="24sp"
-        android:textColor="#000000"
-        android:layout_marginStart="2dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- 柴犬圖片 -->
+        <ImageView
+            android:id="@+id/dogImage"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:src="@drawable/dog_stretch" />
+
+        <!-- 標題文字 -->
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/main_title"
+            android:textSize="24sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/custom_font" />
+    </LinearLayout>
+
+    <!-- 顯示月份 -->
+    <TextView
+        android:id="@+id/textCurrentMonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/custom_font"
-        app:layout_constraintStart_toEndOf="@id/dogImage"
-        app:layout_constraintTop_toTopOf="@id/dogImage"
-        app:layout_constraintBottom_toBottomOf="@id/dogImage"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:text="2025年5月"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleContainer" />
 
     <!-- 月曆 -->
     <com.kizitonwose.calendar.view.CalendarView
@@ -39,73 +56,74 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:cv_dayViewResource="@layout/item_calendar_day"
-        app:layout_constraintTop_toBottomOf="@id/titleText"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/textCurrentMonth" />
 
     <!-- 介紹按鈕們 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/infoButtons"
-        android:layout_width="0dp"
+        android:layout_width="409dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:paddingHorizontal="24dp"
-        app:layout_constraintTop_toBottomOf="@id/calendarView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/calendarView">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnWhatIsKegel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/main_btn1"
             android:background="@drawable/rounded_button_ripple"
             android:backgroundTint="@null"
+            android:text="@string/main_btn1"
             android:textColor="#000000"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnKegelBenefits"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/main_btn2"
             android:layout_marginTop="8dp"
             android:background="@drawable/rounded_button_ripple"
             android:backgroundTint="@null"
+            android:text="@string/main_btn2"
             android:textColor="#000000"
-            app:layout_constraintTop_toBottomOf="@id/btnWhatIsKegel"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/btnWhatIsKegel" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnHowToKegel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/main_btn3"
             android:layout_marginTop="8dp"
             android:background="@drawable/rounded_button_ripple"
             android:backgroundTint="@null"
+            android:text="@string/main_btn3"
             android:textColor="#000000"
-            app:layout_constraintTop_toBottomOf="@id/btnKegelBenefits"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/btnKegelBenefits" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <Button
         android:id="@+id/btnAddTodayTraining"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="我完成了今天的訓練"
         android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_button_ripple"
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
-        android:background="@drawable/rounded_button_ripple"
+        android:text="我完成了今天的訓練"
         android:textColor="#000000"
-        app:layout_constraintTop_toBottomOf="@id/infoButtons"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/infoButtons" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

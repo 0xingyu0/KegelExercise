@@ -20,13 +20,11 @@ import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.model.TrainingRecord
 import com.example.myapplication.utils.CalendarUtils
 import com.example.myapplication.utils.TrainingStorage
-import com.kizitonwose.calendar.core.CalendarDay
-import com.kizitonwose.calendar.core.DayPosition
-import com.kizitonwose.calendar.view.MonthDayBinder
-import com.example.myapplication.ui.calendar.DayViewContainer
 import com.kizitonwose.calendar.core.yearMonth
 import java.time.LocalDate
 import java.time.YearMonth
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class HomeFragment : Fragment() {
 
@@ -69,6 +67,9 @@ class HomeFragment : Fragment() {
                     CalendarUtils.setupCalendar(
                         calendarView = binding.calendarView,
                         onMonthScroll = { yearMonth ->
+                            val formatter = DateTimeFormatter.ofPattern("yyyy年M月", Locale.getDefault())
+                            binding.textCurrentMonth.text = yearMonth.format(formatter)
+
                             val thisMonthRecords = recordMap[yearMonth] ?: emptyList()
                             updateCalendarDots(yearMonth, thisMonthRecords)
                         },

@@ -258,7 +258,9 @@ class CameraFragment : Fragment(), PoseLandmarkerHelper.LandmarkerListener {
 
     override fun onError(error: String, errorCode: Int) {
         activity?.runOnUiThread {
-            Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+            context?.let {
+                Toast.makeText(it, error, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

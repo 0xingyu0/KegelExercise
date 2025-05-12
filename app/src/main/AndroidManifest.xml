@@ -23,15 +23,19 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
 
+        <activity
+            android:name=".StartActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
             <!-- Declare notch support -->
             <meta-data
@@ -40,9 +44,6 @@
         </activity>
 
         <activity android:name=".ui.activity.PoseLandmarkerActivity" />
-
-        <!-- 新增：CheckHistoryActivity -->
-        <activity android:name=".userdata.CheckHistoryActivity" />
 
     </application>
 
