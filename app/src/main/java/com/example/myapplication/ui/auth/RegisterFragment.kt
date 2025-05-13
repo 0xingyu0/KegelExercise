@@ -1,4 +1,3 @@
-// RegisterFragment.kt
 package com.example.myapplication.ui.auth
 
 import android.os.Bundle
@@ -24,15 +23,38 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.btnRegister.setOnClickListener {
-            val username = binding.etUsername.text.toString()
-            val password = binding.etPassword.text.toString()
-            val success = UserStorage.saveUser(requireContext(), UserAccount(username, HashUtils.sha256(password)))
+            val username = binding.etUsername.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
+            val confirmPassword = binding.etConfirmPassword.text.toString().trim()
+
+            if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                binding.tvError.text = "請填寫所有欄位"
+                return@setOnClickListener
+            }
+
+            if (password.length < 6) {
+                binding.tvError.text = "密碼長度至少需 6 碼"
+                return@setOnClickListener
+            }
+
+            if (password != confirmPassword) {
+                binding.tvError.text = "密碼與確認密碼不一致"
+                return@setOnClickListener
+            }
+
+            binding.tvError.text = ""
+
+            val success = UserStorage.saveUser(
+                requireContext(),
+                UserAccount(username, HashUtils.sha256(password))
+            )
 
             if (success) {
                 Toast.makeText(requireContext(), "註冊成功，請登入", Toast.LENGTH_SHORT).show()
-                findNavController().navigateUp()
+                val action = RegisterFragmentDirections.actionRegisterToLogin(username)
+                findNavController().navigate(action)
             } else {
-                Toast.makeText(requireContext(), "帳號已存在", Toast.LENGTH_SHORT).show()
+                binding.tvError.text = "名字已存在"
             }
         }
     }

@@ -42,7 +42,7 @@
         android:id="@+id/etUsername"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:hint="account"
+        android:hint="username"
         android:background="@drawable/bg_rounded_white"
         android:paddingHorizontal="16dp"
         android:textColor="#000000"

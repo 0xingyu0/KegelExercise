@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.os.*
 import android.view.*
 import android.widget.Toast
+import android.content.Intent
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -99,13 +100,16 @@ class BluetoothConnectFragment : Fragment() {
                         socket.connect()
                         bluetoothAdapter?.cancelDiscovery()
                         _binding?.loadingText?.text = "連接成功！"
+                        // 連線成功後顯示按鈕
+                        _binding?.startGameButton?.visibility = View.VISIBLE
 
+                        // 設定按鈕點擊事件
+                        _binding?.startGameButton?.setOnClickListener {
+                            val intent = Intent(requireContext(), com.example.myapplication.ui.activity.AnimalSelectionActivity::class.java)
+                            startActivity(intent)
+                            activity?.finish()
+                        }
                         startReceiveThread(socket)
-
-                        // 若連線後不需要換畫面可註解以下
-                        // parentFragmentManager.beginTransaction()
-                        //     .replace(R.id.fragmentContainer, NextTrainingFragment())
-                        //     .commit()
                         return
                     } catch (e: SecurityException) {
                         _binding?.loadingText?.text = "權限不足：${e.message}"

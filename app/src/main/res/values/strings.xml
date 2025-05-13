@@ -13,5 +13,6 @@
     <string name="train_btn2">我沒有壓力感測器</string>
     <string name="train_text1">想要購買壓力感測器?</string>
     <string name="train_text2">購買連結</string>
-
+    <string name="start_game">Start Game</string>
+    <string name="simulate_pressure">Simulate Pressure</string>
 </resources>

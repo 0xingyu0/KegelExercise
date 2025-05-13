@@ -24,6 +24,12 @@ class LoginFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        val args = arguments?.let { LoginFragmentArgs.fromBundle(it) }
+        args?.username?.let {
+            binding.etUsername.setText(it)
+        }
+
         binding.btnLogin.setOnClickListener {
             val username = binding.etUsername.text.toString()
             val password = binding.etPassword.text.toString()
@@ -31,6 +37,7 @@ class LoginFragment : Fragment() {
 
             if (valid) {
                 UserSession.setLoggedIn(requireContext(), true)
+                UserSession.setUsername(requireContext(), username)
                 startActivity(Intent(requireContext(), MainActivity::class.java))
                 requireActivity().finish()
             } else {

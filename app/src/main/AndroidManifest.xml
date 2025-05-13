@@ -44,6 +44,7 @@
         </activity>
 
         <activity android:name=".ui.activity.PoseLandmarkerActivity" />
+        <activity android:name=".ui.activity.AnimalSelectionActivity" />
 
     </application>
 

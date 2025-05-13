@@ -8,6 +8,10 @@
         android:id="@+id/loginFragment"
         android:name="com.example.myapplication.ui.auth.LoginFragment"
         android:label="登入">
+        <argument
+            android:name="username"
+            app:argType="string"
+            android:defaultValue="" />
         <action
             android:id="@+id/action_login_to_register"
             app:destination="@id/registerFragment" />
@@ -16,5 +20,13 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.myapplication.ui.auth.RegisterFragment"
-        android:label="註冊" />
+        android:label="註冊" >
+        <action
+            android:id="@+id/action_register_to_login"
+            app:destination="@id/loginFragment">
+            <argument
+                android:name="username"
+                app:argType="string" />
+        </action>
+    </fragment>
 </navigation>
