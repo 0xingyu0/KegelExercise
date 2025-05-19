@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary">
+
+    <LinearLayout
+        android:id="@+id/titleContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/dogImage"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:src="@drawable/dog_stretch" />
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/main_title"
+            android:textSize="24sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/custom_font" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textHowToKegel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="收縮肛門與會陰肌肉，持續3~5秒後放鬆，再重複多次，每日訓練3~4次。"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@id/titleContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

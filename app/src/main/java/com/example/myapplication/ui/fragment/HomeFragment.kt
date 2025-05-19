@@ -12,6 +12,7 @@ import com.example.myapplication.model.CheckInRecord
 import com.example.myapplication.utils.CalendarUtils
 import com.example.myapplication.utils.CheckInStorage
 import com.example.myapplication.utils.UserSession
+import com.example.myapplication.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -58,6 +59,27 @@ class HomeFragment : Fragment() {
                     )
 
                     updateCalendarDots(YearMonth.now())
+                }
+
+                binding.btnWhatIsKegel.setOnClickListener {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainer   , FragmentWhatIsKegel())
+                        .addToBackStack(null)
+                        .commit()
+                }
+
+                binding.btnKegelBenefits.setOnClickListener {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainer   , FragmentKegelBenefits())
+                        .addToBackStack(null)
+                        .commit()
+                }
+
+                binding.btnHowToKegel.setOnClickListener {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainer   , FragmentHowToKegel())
+                        .addToBackStack(null)
+                        .commit()
                 }
 
                 binding.btnCheckIn.setOnClickListener {
